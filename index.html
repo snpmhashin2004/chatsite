@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebRTC Chat</title>
+    <style>
+        #messages {
+            height: 200px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+    <div id="messages"></div>
+    <textarea id="messageInput"></textarea>
+    <button onclick="sendMessage()">Send</button>
+
+    <script>
+        // Initialize variables
+        const messagesDiv = document.getElementById('messages');
+        const messageInput = document.getElementById('messageInput');
+
+        // Function to display messages
+        function displayMessage(message) {
+            const p = document.createElement('p');
+            p.textContent = message;
+            messagesDiv.appendChild(p);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        // Function to send message
+        function sendMessage() {
+            const message = messageInput.value.trim();
+            if (message !== '') {
+                displayMessage(`You: ${message}`);
+                messageInput.value = '';
+
+                // Broadcast message to other peers (not implemented in this example)
+            }
+        }
+    </script>
+</body>
+</html>
